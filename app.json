@@ -28,6 +28,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "204cb562-93d6-4030-9972-69d5fd16543c"
+      }
+    },
+    "owner": "pavel.filonchyk"
   }
 }
