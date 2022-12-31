@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   mainTitle: {
     margin: 3,
     fontSize: 24,
-    fontWeight: 700,
+    fontWeight: '600',
 },
   wrapLogo: {
     height: 165,

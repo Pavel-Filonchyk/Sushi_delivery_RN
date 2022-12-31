@@ -1,39 +1,28 @@
-import React, {useCallback, useEffect, useState} from 'react'
+import React, { useEffect, useState } from 'react'
 
-//import { useSelector, useDispatch } from 'react-redux'
-//import { getSushi } from '../../core/actions/getSushiAction'
+import { useSelector, useDispatch } from 'react-redux'
+import { getSushi, onPlus, onMinus } from '../../core/actions/getSushiAction'
 
-//import { onPlus, onMinus } from '../../core/actions/getSushiAction'
 //import { addToCart } from '../../core/actions/addToCartAction'
+
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Button, Image} from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 
 export default function Main({ navigation }) {
-    //const sushi = useSelector(({ getSushi: { sushi } }) => sushi)
-    //const dispatch = useDispatch()
+    const sushi = useSelector((state) => state.sushi)
+    console.log(sushi)
 
-    const [sushi, setData] = useState([])
-    const { '-NKc0ecdlXkS8SRzz7wA': data } = sushi
-
-    const fetchTodos = async () => {
-        const response = await fetch('https://sushi-c34e9-default-rtdb.europe-west1.firebasedatabase.app/sushi.json')
-                
-        const datas = await response.json()
-        setData(datas)
-    }
-    const loadTodos = useCallback(async () => await fetchTodos(), [fetchTodos])
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        loadTodos()
-        //fetchTodos()
-        //dispatch(getSushi())
+        dispatch(getSushi())
     }, [])
     
     const isOnPlus = (id) => {
-        //dispatch(onPlus(id)) 
+        dispatch(onPlus(id)) 
     }
     const isOnMinus = (id) => {
-        //dispatch(onMinus(id))
+        dispatch(onMinus(id))
     }
     const isAddToCart = (id) => {   
         //dispatch(addToCart(id))
@@ -45,23 +34,23 @@ export default function Main({ navigation }) {
                 <View style={styles.wrapCard}>
                     <Text style={styles.title}>Promptly and tasty</Text>
                         {
-                            data?.map(item =>{ 
+                            sushi?.map(item =>{ 
                                 return (
                                 <View key={item.sushiName} >
                                     <View style={styles.card}>
                                         <Text style={styles.sushiName}>{item.sushiName}</Text>
                                         <Image style={{width: 230, height: 160}} source={{uri : item.url}}/>
-                                        <Text style={{margin: 5, marginBottom: 10, fontWeight:600}}>{item.amount} pcs.</Text>
+                                        <Text style={{margin: 5, marginBottom: 10, fontWeight: '600'}}>{item.amount} pcs.</Text>
                                             <View style={styles.items}>
                                                 <TouchableOpacity style={styles.itemsControl} 
-                                                    onPress={() => isOnMinus(item._id)}
-                                                ><Text style={{fontWeight:700}}>-</Text></TouchableOpacity>
+                                                    onPress={() => isOnMinus(item.id)}
+                                                ><Text style={{fontWeight: '700'}}>-</Text></TouchableOpacity>
                                                 <View style={styles.itemsCurrent} >
-                                                    <Text style={{fontWeight:600}}>{item.counter}</Text>
+                                                    <Text style={{fontWeight: '600'}}>{item.counter}</Text>
                                                 </View>
                                                 <TouchableOpacity style={styles.itemsControl} 
-                                                    onPress={() => isOnPlus(item._id)}
-                                                ><Text style={{fontWeight:700}}>+</Text></TouchableOpacity>
+                                                    onPress={() => isOnPlus(item.id)}
+                                                ><Text style={{fontWeight: '700'}}>+</Text></TouchableOpacity>
                                             </View>
                                             <View style={styles.price}>
                                                 <Text style={styles.priceWeight}>{item.weight}g.</Text>
@@ -81,7 +70,6 @@ export default function Main({ navigation }) {
             <View style={styles.iconCart}>
                 <FontAwesome name="opencart" size={30} color='#eb5a1e' 
                     onPress={() => navigation.navigate('cart')}
-                    style={{ zIndex: 1000}}
                 />
             </View>
         </View>
@@ -92,7 +80,7 @@ const styles = StyleSheet.create({
     title: {
         margin: 5,
         fontSize: 18,
-        fontWeight: 600,
+        fontWeight: '600',
         marginBottom: 15
     },
     wrapCard: {
@@ -113,7 +101,7 @@ const styles = StyleSheet.create({
     sushiName: {
         margin: 5,
         fontSize: 18,
-        fontWeight: 600
+        fontWeight: '600'
     },
     items: {
         flexDirection: 'row',
@@ -152,7 +140,7 @@ const styles = StyleSheet.create({
 
     priceWeight: {
         fontSize: 15,
-        fontWeight: 600,
+        fontWeight: '600',
         margin: 5
     },
     btn: {
@@ -171,14 +159,14 @@ const styles = StyleSheet.create({
     btnTitle: {
         color: '#eb5a1e',
         fontSize: 14,
-        fontWeight: 500
+        fontWeight: '500'
     },
     iconCart: {
         width: 50,
         height: 50,
         position: 'absolute',
-        top: 306,
-        right: 28,
+        top: 10,
+        right: 6,
         zIndex: 1000
       }
   })

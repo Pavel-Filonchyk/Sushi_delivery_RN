@@ -1,5 +1,5 @@
-// import {Provider} from 'react-redux'
-// import store from './src/core/store'
+import {Provider} from 'react-redux'
+import store from './src/core/store'
 import Header from './src/components/Header/Header'
 import Main from './src/components/Main/Main'
 import ShoppingCart from './src/components/ShoppingCart/ShoppingCart.jsx'
@@ -10,7 +10,7 @@ const Stack = createNativeStackNavigator()
 export default function App() {
  
   return (
-    
+    <Provider store={store}>
       <NavigationContainer>
         <Header/>
         <Stack.Navigator initialRouteName="sushi">
@@ -18,6 +18,6 @@ export default function App() {
           <Stack.Screen name="cart" component={ShoppingCart}/>
         </Stack.Navigator>
       </NavigationContainer>
-
+    </Provider>
   )
 }
