@@ -2,7 +2,7 @@ const initialState = {
     sushi: [],
 }
 
-const reducer = (state = initialState, action) => {
+const getSushiReducer = (state = initialState, action) => {
     switch (action.type){ 
 
         case 'GET_SUSHI_SUCCESS':
@@ -64,5 +64,5 @@ const reducer = (state = initialState, action) => {
     }
 }
 
-export default reducer
+export default getSushiReducer
 

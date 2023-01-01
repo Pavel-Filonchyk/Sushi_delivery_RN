@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from 'react'
-
 import { useSelector, useDispatch } from 'react-redux'
+
 import { getSushi, onPlus, onMinus } from '../../core/actions/getSushiAction'
-
-//import { addToCart } from '../../core/actions/addToCartAction'
-
+import { addToCart } from '../../core/actions/addToCartAction'
 import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Button, Image} from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 
 export default function Main({ navigation }) {
-    const sushi = useSelector((state) => state.sushi)
+    const sushi = useSelector((state) => state.getSushiReducer.sushi)
     console.log(sushi)
 
     const dispatch = useDispatch()
@@ -25,7 +23,7 @@ export default function Main({ navigation }) {
         dispatch(onMinus(id))
     }
     const isAddToCart = (id) => {   
-        //dispatch(addToCart(id))
+        dispatch(addToCart(id))
     }
    
     return (
@@ -56,10 +54,11 @@ export default function Main({ navigation }) {
                                                 <Text style={styles.priceWeight}>{item.weight}g.</Text>
                                                 <Text style={styles.priceWeight}>{item.price}$</Text>
                                             </View>
-                                            <TouchableOpacity style={styles.btn}>
+                                            <TouchableOpacity style={styles.btn}
+                                                onPress={() => isAddToCart(item.id)}
+                                            >
                                                 <Text style={styles.btnTitle}>+ add to cart</Text>
-                                            </TouchableOpacity>
-                                            
+                                            </TouchableOpacity> 
                                     </View>
                                 </View>   
                             )
@@ -164,8 +163,9 @@ const styles = StyleSheet.create({
     iconCart: {
         width: 50,
         height: 50,
-        position: 'absolute',
-        top: 10,
+        position: 'fixed',
+        //top: 10,
+        top: 300,
         right: 6,
         zIndex: 1000
       }

@@ -1,25 +1,14 @@
-import {legacy_createStore as createStore , applyMiddleware } from 'redux'
+import {legacy_createStore as createStore, applyMiddleware, combineReducers } from 'redux'
 import createSagaMiddleware from 'redux-saga'
-import watcherLoader from './sagas/getSushiSaga'
-import reducer from './reducers/reducer'
+
+import { rootReducer } from './reducers'
+import rootSaga from './sagas'
 
 const sagaMiddleware = createSagaMiddleware()
+const reducers = combineReducers(rootReducer());
+ 
+const store = createStore(reducers, applyMiddleware(sagaMiddleware))
 
-const store = createStore(reducer, applyMiddleware(sagaMiddleware))
-sagaMiddleware.run(watcherLoader)
+sagaMiddleware.run(rootSaga)
+
 export default store
-
-// import createSagaMiddleware from 'redux-saga';
-// import {createStore, applyMiddleware} from 'redux';
- 
-// import {combinedReducers} from './reducers';
-// import rootSaga from './sagas';
- 
-// const sagaMiddleware = createSagaMiddleware();
-// const middlewares = [sagaMiddleware];
- 
-// const store = createStore(combinedReducers, applyMiddleware(...middlewares));
- 
-// sagaMiddleware.run(rootSaga);
- 
-// export {store};

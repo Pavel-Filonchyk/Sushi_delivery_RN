@@ -15,7 +15,7 @@ export default function App() {
         <Header/>
         <Stack.Navigator initialRouteName="sushi">
           <Stack.Screen name="sushi" component={Main} options={{ headerShown: false }}/>
-          <Stack.Screen name="cart" component={ShoppingCart}/>
+          <Stack.Screen name="cart" component={ShoppingCart} options={{ headerShown: false }}/>
         </Stack.Navigator>
       </NavigationContainer>
     </Provider>
