@@ -85,17 +85,6 @@ const styles = StyleSheet.create({
     wrapCard: {
         alignItems: 'center',
         backgroundColor: 'white',
-        ...Platform.select({
-            android: {
-                marginTop: 0,
-            },
-            ios: {
-                marginTop: 0,
-            },
-            default: {
-                marginTop: 160
-            },
-        }),
     },
     card: {
         alignItems: 'center', 
@@ -173,20 +162,8 @@ const styles = StyleSheet.create({
     iconCart: {
         width: 50,
         height: 50,
-        right: 6,
-        ...Platform.select({
-            android: {
-                position: 'absolute',
-                top: 10,
-            },
-            ios: {
-                position: 'absolute',
-                top: 10,
-            },
-            default: {
-                position: 'fixed',
-                top: 190,
-            },
-          }),
+        right: 0,
+        position: 'absolute',
+        top: 10,
       }
   })

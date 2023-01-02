@@ -143,10 +143,9 @@ const styles = StyleSheet.create({
     wrapBtn: {
         position: 'absolute',
         bottom: 12,
-        right: '-48%',
         width: '100%',
         justifyContent: 'center',
-    
+        alignItems: 'center'
     },
     wrapAlert: {
         alignItems: 'center',

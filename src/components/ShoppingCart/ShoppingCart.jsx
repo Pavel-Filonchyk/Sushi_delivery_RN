@@ -48,17 +48,7 @@ const styles = StyleSheet.create({
     wrapBtnBack: {
         marginLeft: 10,
         marginBottom: 20,
-        ...Platform.select({
-            android: {
-                marginTop: 10,
-            },
-            ios: {
-                marginTop: 10,
-            },
-            default: {
-                marginTop: 180
-            },
-        }),
+        marginTop: 10,
     },
     totalPrice: {
         width: '100%',

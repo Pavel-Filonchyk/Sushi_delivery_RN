@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: '100%',
     width: '100%',
-    height: 315,
+    height: 325,
     ...Platform.select({
       android: {
         width: '90%',

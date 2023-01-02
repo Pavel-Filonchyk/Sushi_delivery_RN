@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     },
     wrapperElems: {
         flexDirection: 'row',
-        justifyContent: 'start',
+        justifyContent: 'flex-start',
         alignItems: 'center',
         width: '50%',
         marginLeft: 1
@@ -112,7 +112,7 @@ const styles = StyleSheet.create({
         fontWeight: '600',
     },
     cross: {
-       justifyContent: 'center',
+        justifyContent: 'center',
 	    marginRight: '1%'
     }
 })
