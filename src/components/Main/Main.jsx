@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 
 import { getSushi, onPlus, onMinus } from '../../core/actions/getSushiAction'
 import { addToCart } from '../../core/actions/addToCartAction'
-import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Button, Image} from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView, Image, Platform} from 'react-native'
 import { FontAwesome } from '@expo/vector-icons'
 
 export default function Main({ navigation }) {
@@ -84,7 +84,18 @@ const styles = StyleSheet.create({
     },
     wrapCard: {
         alignItems: 'center',
-        backgroundColor: 'white'
+        backgroundColor: 'white',
+        ...Platform.select({
+            android: {
+                marginTop: 0,
+            },
+            ios: {
+                marginTop: 0,
+            },
+            default: {
+                marginTop: 160
+            },
+        }),
     },
     card: {
         alignItems: 'center', 
@@ -162,12 +173,20 @@ const styles = StyleSheet.create({
     iconCart: {
         width: 50,
         height: 50,
-        //to IOS
-        position: 'absolute',
-        top: 10,
-        //to window
-        // position: 'fixed',
-        //top: 300,
         right: 6,
+        ...Platform.select({
+            android: {
+                position: 'absolute',
+                top: 10,
+            },
+            ios: {
+                position: 'absolute',
+                top: 10,
+            },
+            default: {
+                position: 'fixed',
+                top: 190,
+            },
+          }),
       }
   })

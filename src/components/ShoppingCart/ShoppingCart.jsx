@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View, Platform } from 'react-native'
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
 import { sendSushiCart } from '../../core/actions/sendSushiCartAction'
 import ShopList from './ShopList/ShopList'
@@ -46,12 +46,19 @@ const styles = StyleSheet.create({
         height: '100%'
     },
     wrapBtnBack: {
-        //to IOS
-        marginTop: 0,
-        //to window
-        //marginTop: 180,
         marginLeft: 10,
-        marginBottom: 20
+        marginBottom: 20,
+        ...Platform.select({
+            android: {
+                marginTop: 10,
+            },
+            ios: {
+                marginTop: 10,
+            },
+            default: {
+                marginTop: 180
+            },
+        }),
     },
     totalPrice: {
         width: '100%',
@@ -64,13 +71,10 @@ const styles = StyleSheet.create({
         marginTop: 20
     },
     blockCheckout: {
-        position: 'fixed',
-        //to IOS
-        bottom: -30,
-        //bottom: 40,
-        left: '50%',
+        alignItems: 'center',
         height: 40,
         width: '100%',
-
+        position: 'absolute',
+        bottom: 60,
     }
 })

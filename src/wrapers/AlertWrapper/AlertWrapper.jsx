@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { StyleSheet, Modal, View, Text } from 'react-native'
+import { StyleSheet, Modal, View, Platform } from 'react-native'
 
 export default function AlertWrapper(props) {
   return (
@@ -40,7 +40,6 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
     height: 150,
-    width: '90%',
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -48,6 +47,18 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
-    elevation: 5
+    elevation: 5,
+    ...Platform.select({
+      android: {
+        width: '90%',
+      },
+      ios: {
+        width: '90%',
+      },
+      default: {
+        width: 400,
+      },
+    }),
   },
+  
 })
