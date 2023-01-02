@@ -1,21 +1,18 @@
 import React from 'react'
-//import {Link} from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux'
 import { StyleSheet, Text, View } from 'react-native'
 import { MaterialCommunityIcons, MaterialIcons } from '@expo/vector-icons'
-
-//import { sendSushiCart } from '../../core/actions/sendSushiCartAction'
+import { sendSushiCart } from '../../core/actions/sendSushiCartAction'
 import ShopList from './ShopList/ShopList'
-
 
 export default function ShoppingCart({navigation}) {
     const sushiInCart = useSelector((state) => state.addToCartReducer.sushiInCart)
     const totalPrice = useSelector((state) => state.addToCartReducer.totalPrice)
-    console.log(sushiInCart)
     const dispatch = useDispatch()
 
     const onSushiCart = () => {
-        //dispatch(sendSushiCart())
+        dispatch(sendSushiCart())
+        navigation.navigate('checkout')
     }
 
     const cardNames = sushiInCart?.flat().map(card =>{
@@ -36,7 +33,9 @@ export default function ShoppingCart({navigation}) {
                 <Text style={styles.textTotalPrice}>Total price: {totalPrice}$</Text>
             </View>
             <View style={styles.blockCheckout}>
-                <MaterialIcons name="wallet-travel" size={30} color="#eb5a1e" />
+                <MaterialIcons name="wallet-travel" size={40} color="#eb5a1e" 
+                    onPress={() => onSushiCart()}
+                />
             </View>
         </View>
     )
@@ -47,7 +46,10 @@ const styles = StyleSheet.create({
         height: '100%'
     },
     wrapBtnBack: {
-        marginTop: 180,
+        //to IOS
+        marginTop: 0,
+        //to window
+        //marginTop: 180,
         marginLeft: 10,
         marginBottom: 20
     },
@@ -63,7 +65,9 @@ const styles = StyleSheet.create({
     },
     blockCheckout: {
         position: 'fixed',
-        bottom: 40,
+        //to IOS
+        bottom: -30,
+        //bottom: 40,
         left: '50%',
         height: 40,
         width: '100%',

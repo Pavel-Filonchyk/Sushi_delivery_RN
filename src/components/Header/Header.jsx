@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 20,
     position: 'fixed',
-    zIndex: 100
+    zIndex: 10
   },
   logo: {
     width: 100,

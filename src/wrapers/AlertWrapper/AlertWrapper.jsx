@@ -1,23 +1,53 @@
 import React from 'react'
-import { Modal } from 'antd'
-import style from './AlertWrapper.module.scss'
 
-export default function ModalWrapper(props) {
+import { StyleSheet, Modal, View, Text } from 'react-native'
+
+export default function AlertWrapper(props) {
   return (
-
-    <Modal
-        open={props.showAlert || props.showAlertError || props.showOutAlert}
-        closable={false}
-        footer={null}
-        centered={true}
-        //onCancel={closeModalPreview}
-        className={style.modal}
-        width={400}
-        mask={true}
-        maskStyle={{ background: 'rgba(235, 90, 30, 0.3)' }}
-        bodyStyle={{ height: 150, padding: 0, borderRadius: '10px'}}
-    >
-        {props.children} 
-    </Modal>
+    
+    <View style={styles.centeredView}>
+      <Modal
+        visible={ props.showAlert }  // 
+        animationType="none"
+        transparent={true}
+        >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            {props.children}  
+          </View>
+        </View>
+      </Modal>
+    </View>
   )
 }
+
+const styles = StyleSheet.create({
+  centeredView: {
+    justifyContent: "center",
+    alignItems: "center",
+    overflow: 'hidden',
+    zIndex: 1000,
+    backgroundColor: 'floralwhite',
+    height: '100%'
+  },
+  modalView: {
+    backgroundColor: "white",
+    borderRadius: 20,
+    borderStyle: 'solid',
+    borderWidth: 2,
+    borderColor: '#eb5a1e',
+    alignItems: "center",
+    height: '100%',
+    width: '100%',
+    height: 150,
+    width: '90%',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 4
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+})

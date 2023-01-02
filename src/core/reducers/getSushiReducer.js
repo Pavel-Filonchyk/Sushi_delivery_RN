@@ -22,14 +22,13 @@ const getSushiReducer = (state = initialState, action) => {
             return {
             ...state, 
             sushi: [
-                ...state.sushi.flat().splice(0, itemIndx),
+                ...state.sushi.flat().slice(0, itemIndx),
                 newItem,
-                ...state.sushi.flat().splice(itemIndx + 1)
+                ...state.sushi.flat().slice(itemIndx + 1)
             ]
         }
         case 'ON_MINUS':
             const idx = action.payload
-            console.log(idx)
             const itemInx = state.sushi.flat().findIndex(item => item.id === idx)
             const itemState = state.sushi.flat().find(item => item.id === idx)
             if (itemState.counter > 1){
@@ -40,9 +39,9 @@ const getSushiReducer = (state = initialState, action) => {
                 return {
                     ...state, 
                     sushi: [
-                        ...state.sushi.flat().splice(0, itemInx),
+                        ...state.sushi.flat().slice(0, itemInx),
                         changedItem,
-                        ...state.sushi.flat().splice(itemInx + 1)
+                        ...state.sushi.flat().slice(itemInx + 1)
                     ]
                 }
             }else{

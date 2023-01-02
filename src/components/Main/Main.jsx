@@ -85,12 +85,11 @@ const styles = StyleSheet.create({
     wrapCard: {
         alignItems: 'center',
         backgroundColor: 'white'
-        //marginBottom: 325
     },
     card: {
         alignItems: 'center', 
 	    height: 'auto',
-        width: 280,
+        width: 260,
         marginBottom: 25,
         borderStyle: 'solid',
         borderWidth: 2,
@@ -163,10 +162,12 @@ const styles = StyleSheet.create({
     iconCart: {
         width: 50,
         height: 50,
-        position: 'fixed',
-        //top: 10,
-        top: 300,
+        //to IOS
+        position: 'absolute',
+        top: 10,
+        //to window
+        // position: 'fixed',
+        //top: 300,
         right: 6,
-        zIndex: 1000
       }
   })
