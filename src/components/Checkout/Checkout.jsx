@@ -1,24 +1,24 @@
 import React, { useState } from 'react'
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import { AntDesign, Ionicons } from '@expo/vector-icons'
+
 import { useSelector, useDispatch } from 'react-redux'
 import ModalWrapper from '../../wrapers/ModalWrarrer/ModalWrapper'
 import AlertWrapper from '../../wrapers/AlertWrapper/AlertWrapper'
-//import { resetSushiCart } from '../../core/actions/addToCartAction'
+import { resetSushiCart } from '../../core/actions/addToCartAction'
 
 const Checkout = ({ navigation }) => {
 
     const bill = useSelector((state) => state.sendSushiCartReduser.bill)
-   
+    const dispatch = useDispatch()
+    
     const [showCheckout, setShowCheckout] = useState(true)
     const [showAlert, setAlert] = useState(false)
-    // const [showOutAlert, setOutAlert] = useState(true)
-    // const dispatch = useDispatch()
     
     const onBuySushi = () => {
         setShowCheckout(false)
         setAlert(true)
-        //dispatch(resetSushiCart())
+        dispatch(resetSushiCart())
     }
 
     const closeAlert = () => {
@@ -29,16 +29,12 @@ const Checkout = ({ navigation }) => {
         setShowCheckout(false)
         navigation.navigate('sushi')
     }
-    // const onOutAlert = () => {
-    //     setOutAlert(false)
-    //     navigate('/')
-    // }
     return (
         <View>
             <ModalWrapper showCheckout={showCheckout} name='showCheckout'>
                 <View style={styles.mainWrap}>
                     <View style={styles.header}>
-                        <Text style={styles.title}>{bill?.userName} here is your order</Text>
+                        <Text style={styles.title}>Here is your order</Text>
                         <Ionicons style={{marginRight: 26, marginTop: 10}} name="md-close-sharp" size={20} color="black" 
                             onPress={() => onCloseCheckout()}
                         />
@@ -61,24 +57,6 @@ const Checkout = ({ navigation }) => {
                     </View>  
                 </View> 
             </ModalWrapper>
-            {/* <ModalWrapper showOutAlert={showOutAlert}>
-                <div className={style.mainWrap}>
-                    <div className={style.wrapAlert}>
-                        <span>You are not authorized,</span>
-                        <span>register on the site</span>
-                    </div>
-                    <div className={style.wrapBtn}>
-                        <Button
-                            className={style.btn}
-                            style={{ border: '2px solid #eb5a1e' }}
-                            onClick={() => onOutAlert()}
-                        >
-                            <span>Ok</span>
-                        </Button>
-                    </div>
-                    
-                </div> 
-            </ModalWrapper> */}
             <AlertWrapper showAlert={showAlert}>
                 <View style={styles.mainWrap}>
                     <View style={styles.wrapAlert}>

@@ -58,6 +58,22 @@ const getSushiReducer = (state = initialState, action) => {
                     ]
                 }
             }
+        case 'RESET_SUSHI_CART':
+            const resetElems = state.sushi.map(item => {
+                return {
+                    sushiName: item.sushiName,
+                    amount: item.amount,
+                    weight: item.weight,
+                    price: item.price,
+                    url: item.url,
+                    counter: 1,
+                    id: item.id
+                }
+            })
+        return {
+            ...state,
+           sushi: resetElems
+        } 
         default: 
         return state;  
     }

@@ -8,8 +8,7 @@ import { FontAwesome } from '@expo/vector-icons'
 
 export default function Main({ navigation }) {
     const sushi = useSelector((state) => state.getSushiReducer.sushi)
-    console.log(sushi)
-
+    
     const dispatch = useDispatch()
 
     useEffect(() => {

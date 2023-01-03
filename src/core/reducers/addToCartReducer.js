@@ -2,7 +2,6 @@ const initialState = {
     sushi: [],
     sushiInCart: [],
     totalPrice: 0,
-    sushi: [],
 }
 
 const addToCartReducer = (state = initialState, action) => {
@@ -48,7 +47,7 @@ const addToCartReducer = (state = initialState, action) => {
                 url: elem.url,
                 counter: findItem.counter,
                 id: elem.id
-            };
+            }
         return {
             ...state,
         sushiInCart: [
@@ -126,6 +125,12 @@ const addToCartReducer = (state = initialState, action) => {
                 ],
                 totalPrice: state.totalPrice - Number(findItms.price)
             } 
+        case 'RESET_SUSHI_CART': 
+            return {
+                ...state,
+                sushiInCart: [],
+                totalPrice: 0
+            } 
         default: 
         return state;  
     }
@@ -133,12 +138,3 @@ const addToCartReducer = (state = initialState, action) => {
 
 export default addToCartReducer
 
-//   [actions.resetSushiCart]: (state, data) => {
-    
-//     return {
-//         ...state,
-//         sushiInCart: [],
-//         totalPrice: 0
-//     }  
-//   },
-  

@@ -31,10 +31,16 @@ const deleteItem = (id) => {
         payload: id 
     } 
 }
+const resetSushiCart = () => {
+    return {
+        type: 'RESET_SUSHI_CART',
+    } 
+}
 export {
     addToCart,
     addToCartSuccess,
     addToCounter,
     deductFromCounter,
-    deleteItem
+    deleteItem,
+    resetSushiCart,
 }
