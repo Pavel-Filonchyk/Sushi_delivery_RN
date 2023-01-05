@@ -3,16 +3,18 @@
     "name": "sushi",
     "slug": "sushi",
     "version": "1.0.0",
+    "privacy": "public",
+    "sdkVersion": "46.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/LogoRoll.png",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash.png",
-      "resizeMode": "contain",
+      "image": "./assets/LogoRoll.png",
+      "resizeMode": "cover",
       "backgroundColor": "#ffffff"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 500
     },
     "assetBundlePatterns": [
       "**/*"
@@ -21,13 +23,16 @@
       "supportsTablet": true
     },
     "android": {
+      "package": "com.sushi_delivery_demo",
+      "versionCode": 1,
+      "permissions": ["ACCESS_COARSE_LOCATION"],
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/LogoRoll.png",
         "backgroundColor": "#FFFFFF"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/LogoRoll.png"
     },
     "extra": {
       "eas": {
