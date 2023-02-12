@@ -8,7 +8,6 @@ import { FontAwesome } from '@expo/vector-icons'
 
 export default function Main({ navigation }) {
     const sushi = useSelector((state) => state.getSushiReducer.sushi)
-    
     const dispatch = useDispatch()
 
     useEffect(() => {
@@ -40,13 +39,13 @@ export default function Main({ navigation }) {
                                         <Text style={{margin: 5, marginBottom: 10, fontWeight: '600'}}>{item.amount} pcs.</Text>
                                             <View style={styles.items}>
                                                 <TouchableOpacity style={styles.itemsControl} 
-                                                    onPress={() => isOnMinus(item.id)}
+                                                    onPress={() => isOnMinus(item._id)}
                                                 ><Text style={{fontWeight: '700'}}>-</Text></TouchableOpacity>
                                                 <View style={styles.itemsCurrent} >
                                                     <Text style={{fontWeight: '600'}}>{item.counter}</Text>
                                                 </View>
                                                 <TouchableOpacity style={styles.itemsControl} 
-                                                    onPress={() => isOnPlus(item.id)}
+                                                    onPress={() => isOnPlus(item._id)}
                                                 ><Text style={{fontWeight: '700'}}>+</Text></TouchableOpacity>
                                             </View>
                                             <View style={styles.price}>
@@ -54,7 +53,7 @@ export default function Main({ navigation }) {
                                                 <Text style={styles.priceWeight}>{item.price}$</Text>
                                             </View>
                                             <TouchableOpacity style={styles.btn}
-                                                onPress={() => isAddToCart(item.id)}
+                                                onPress={() => isAddToCart(item._id)}
                                             >
                                                 <Text style={styles.btnTitle}>+ add to cart</Text>
                                             </TouchableOpacity> 
@@ -118,7 +117,6 @@ const styles = StyleSheet.create({
         borderRadius: 8,
         alignItems: 'center',
         justifyContent: 'center'
-    
     },
     itemsCurrent: {
         width: 50,
@@ -134,7 +132,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'space-between',
     },
-
     priceWeight: {
         fontSize: 15,
         fontWeight: '600',

@@ -6,15 +6,15 @@ const getSushiReducer = (state = initialState, action) => {
     switch (action.type){ 
 
         case 'GET_SUSHI_SUCCESS':
-            const { '-NKc0ecdlXkS8SRzz7wA': data } = action.payload
         return {
             ...state,
-            sushi: [...data],
+            sushi: action.payload,
         }
         case 'ON_PLUS':
             const id = action.payload
-            const itemIndx = state.sushi.flat().findIndex(item => item.id === id)
-            const itemInState = state.sushi.flat().find(item => item.id === id)
+            console.log(id)
+            const itemIndx = state.sushi.flat().findIndex(item => item._id === id)
+            const itemInState = state.sushi.flat().find(item => item._id === id)
             const newItem = {
                 ...itemInState,
                 counter: ++itemInState.counter,
@@ -29,8 +29,8 @@ const getSushiReducer = (state = initialState, action) => {
         }
         case 'ON_MINUS':
             const idx = action.payload
-            const itemInx = state.sushi.flat().findIndex(item => item.id === idx)
-            const itemState = state.sushi.flat().find(item => item.id === idx)
+            const itemInx = state.sushi.flat().findIndex(item => item._id === idx)
+            const itemState = state.sushi.flat().find(item => item._id === idx)
             if (itemState.counter > 1){
                 const changedItem = {
                     ...itemState,

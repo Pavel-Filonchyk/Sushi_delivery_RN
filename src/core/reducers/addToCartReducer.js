@@ -14,9 +14,9 @@ const addToCartReducer = (state = initialState, action) => {
             // 1. find identical elems by index in elems
             // 2. find identical items by index in items and take its price and changed counter
             // 3. add the counters and multiply by the price 
-            const itemInx = state.sushiInCart.flat().findIndex(item => item.id === id)
-            const findItem = sushi.flat().find(item => item.id === id)
-            const itemsInState = state.sushiInCart.flat().find(item => item.id === id)
+            const itemInx = state.sushiInCart.flat().findIndex(item => item._id === id || item.id === id)
+            const findItem = sushi.flat().find(item => item._id === id || item.id === id)
+            const itemsInState = state.sushiInCart.flat().find(item => item._id === id || item.id === id)
             
             const firstPrice = Number(findItem.counter) *  Number(findItem.price)
             if (itemInx >= 0){
@@ -38,7 +38,7 @@ const addToCartReducer = (state = initialState, action) => {
                 }
             }
             // if the elem is not in the cart
-            const elem = sushi.flat().find(item => item.id === id)
+            const elem = sushi.flat().find(item => item._id === id)
             const newElem = {
                 sushiName: elem.sushiName,
                 amount: elem.amount,
@@ -46,7 +46,7 @@ const addToCartReducer = (state = initialState, action) => {
                 price: findItem.counter * findItem.price,
                 url: elem.url,
                 counter: findItem.counter,
-                id: elem.id
+                id: elem._id
             }
         return {
             ...state,
@@ -61,7 +61,7 @@ const addToCartReducer = (state = initialState, action) => {
             const idx = action.payload
             const elemInd = state.sushiInCart.flat().findIndex(item => item.id === idx)
             const elemInState = state.sushiInCart.flat().find(item => item.id === idx)
-            const findItems = state.sushi.flat().find(item => item.id === idx)
+            const findItems = state.sushi.flat().find(item => item._id === idx)
             const newElement = {
                 ...elemInState,
                 counter: ++elemInState.counter,
@@ -80,7 +80,7 @@ const addToCartReducer = (state = initialState, action) => {
             const inx = action.payload
             const elemIndex = state.sushiInCart.flat().findIndex(item => item.id === inx)
             const elemIntoState = state.sushiInCart.flat().find(item => item.id === inx)
-            const findElem = state.sushi.flat().find(item => item.id === inx)
+            const findElem = state.sushi.flat().find(item => item._id === inx)
             const deletePrice = Number(elemIntoState.price) - Number(findElem.price)
             if (elemIntoState.counter > 1){
                 const changedElem = {

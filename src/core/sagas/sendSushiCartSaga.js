@@ -14,7 +14,7 @@ function* workerSendSushiCart() {
         "price": item.price,
     }
   })
-  const invoice = {check: collector, totalPrice, userName: 'Pavel'}  // userName
+  const invoice = {check: collector, totalPrice, userName: "User"}  // userName
   try {
       // const { data } = yield call(httpProvider.post, BUY_SUSHI, {
       //     data: invoice
